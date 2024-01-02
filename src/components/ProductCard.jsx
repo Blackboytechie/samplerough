@@ -18,6 +18,8 @@ const ProductCard = ({product,category,subcategory}) => {
     path = `${product.productId}`;
   }else if(category == "allproducts"){
     path = `${category}/${product.shortDesc.split(" ")[0]}/${product.productId}`;
+  }else if(category == "searched"){
+    path = `${product.productId}`;
   }else if(category){
     path = `${product.shortDesc.split(" ")[0]}/${product.productId}`;
   }else{
