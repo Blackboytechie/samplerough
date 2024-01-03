@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ProductCard from "../components/ProductCard";
-import { useParams } from "react-router-dom";
+import { useParams,useLocation } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import BreadCrumbs from "../components/BreadCrumbs";
 
 const Category = ({ products }) => {
   const [showdata, setShowdata] = useState([]);
@@ -18,7 +19,20 @@ const Category = ({ products }) => {
     return shuffledArray;
   };
 
-  const { category } = useParams();
+  const {category} =useParams();
+  const { pathname } = useLocation();
+  console.log("pathname",pathname);
+  const titles = pathname.split('/');
+  console.log("titles",titles);
+  const mainTitle = titles[1];
+  const mainUrl = '/'+titles[1];
+  console.log("mainTitle",mainTitle);
+  console.log("mainUrl",mainUrl);
+  const catTitle = titles[2];
+  const catUrl = pathname;
+  console.log("catTitle",catTitle);
+  console.log("catUrl",catUrl);
+  
   console.log("category : ", category);
   console.log("products : ", products);
 
@@ -104,10 +118,10 @@ const Category = ({ products }) => {
       return <div>Error loading products.</div>;
     }
   }//BagsAndLuggages
-  else if (category === "Bags") {
+  else if (category === "BagsTravelLuggages") {
     // Bags Luggages
-    if (products && products.BagsAndBackpacks && products.DoffleBags && products.TrollyseAndSuitcase && products.ShoppingbagsAndOtherbags) {
-      filteredProducts = [...products.BagsAndBackpacks, ...products.DoffleBags,...products.TrollyseAndSuitcase,...products.ShoppingbagsAndOtherbags];
+    if (products && products.BagsAndBackpacks && products.DuffleBags && products.TrolleysAndSuitcases && products.ShoppingAndOtherbags) {
+      filteredProducts = [...products.BagsAndBackpacks, ...products.DuffleBags,...products.TrolleysAndSuitcases,...products.ShoppingAndOtherbags];
     } else {
       console.error("Products data is incomplete.");
       return <div>Error loading products.</div>;
@@ -122,7 +136,7 @@ const Category = ({ products }) => {
 
   return (
     <Container className="product-list-container">
-      <h3>Products </h3>
+      <BreadCrumbs mainTitle={mainTitle} mainUrl={mainUrl} catTitle={catTitle} catUrl={catUrl}/>
       <Row>
         {filteredProducts.map((product) => (
           <Col key={product.productId} xs={12} md={6} lg={4}>

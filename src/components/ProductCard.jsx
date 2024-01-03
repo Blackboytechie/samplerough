@@ -28,7 +28,7 @@ const ProductCard = ({product,category,subcategory}) => {
   console.log("product to pass : ",product);  
   return (
     <Card style={{borderRadius:"10%",padding:20,marginBottom:20}} as={Link} to={`${pathname}/${path}`} state={{product}}>
-      <Card.Img variant="top" src={product.productImage[0]} alt={product.productImage} style={{width:300,height:300}}/>
+      <Card.Img variant="top" src={product.productImage[0]} alt={product.productImage} style={{width:200,height:200}}/>
       <Card.Title style={{position:"absolute",top:30,right:30}}><FontAwesomeIcon icon={regularHeart} style={{width:"30",height:"30"}} /></Card.Title>
       <Card.Body>
         <Card.Title>{product.shortDesc}</Card.Title>

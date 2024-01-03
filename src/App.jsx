@@ -5,17 +5,18 @@ import Home from "./pages/Home";
 import SubCategory from "./pages/SubCategory";
 import { premiumFruits } from "./utils/premiumfruitsdata"; //premiumfruits data
 import { beauty } from "./utils/beauty"; //beauty data
-import { BagsAndLuggages } from "./utils/Bags"; //BagsAndLuggages data
+import { SportsToysLuggages } from "./utils/sportstoysluggages"; //sportstoysLuggages data
 import MainCategory from "./pages/MainCategory";
 import Header from "./components/Header";
 import ProductDetail from "./pages/ProductDetail";
 import Search from "./pages/Search";
 import Cart from "./pages/Cart";
+import AllCategory from "./pages/AllCategory";
 
 function App() {
   console.log("premiumfruits data :", premiumFruits);
   const totalProducts = Object.values(premiumFruits)
-    .concat(Object.values(BagsAndLuggages))
+    .concat(Object.values(SportsToysLuggages))
     .concat(Object.values(beauty))
     .flat();
   console.log("total products", totalProducts);
@@ -56,20 +57,21 @@ function App() {
             path="/beauty/:category/:subcategory/:product"
             element={<ProductDetail />}
           />
+          {/* sportsToysLuggages */}
           <Route
-            path="/BagsAndLuggages"
-            element={<MainCategory products={BagsAndLuggages} />}
+            path="/SportsToys&Luggages"
+            element={<MainCategory products={SportsToysLuggages} />}
           />
           <Route
-            path="/BagsAndLuggages/:category"
-            element={<Category products={BagsAndLuggages} />}
+            path="/SportsToys&Luggages/:category"
+            element={<Category products={SportsToysLuggages} />}
           />
           <Route
-            path="/BagsAndLuggages/:category/:subcategory"
-            element={<SubCategory products={BagsAndLuggages} />}
+            path="/SportsToys&Luggages/:category/:subcategory"
+            element={<SubCategory products={SportsToysLuggages} />}
           />
           <Route
-            path="/BagsAndLuggages/:category/:subcategory/:product"
+            path="/SportsToys&Luggages/:category/:subcategory/:product"
             element={<ProductDetail />}
           />
           {/* search */}
@@ -81,6 +83,8 @@ function App() {
             path="/search/:searchTerm/:productId"
             element={<ProductDetail />}
           />
+          {/* Allcategory */}
+          <Route path="/allcategory" element={<AllCategory/>} />
 
           {/* cart */}
           <Route path="/checkout/cart" element={<Cart />} />
